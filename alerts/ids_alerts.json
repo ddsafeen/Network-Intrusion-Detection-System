@@ -1,0 +1,73 @@
+{
+    "project": "Network Intrusion Detection System",
+    "dataset_type": "Synthetic",
+    "records_analyzed": 19,
+    "invalid_rows": 0,
+    "total_alerts": 6,
+    "alerts": [
+        {
+            "rule_id": "IDS-001",
+            "severity": "MEDIUM",
+            "description": "Possible port scanning activity",
+            "timestamp": "2026-10-15T10:01:20",
+            "source_ip": "192.0.2.50",
+            "destination_ip": "198.51.100.10",
+            "unique_ports": [
+                21,
+                22,
+                23,
+                25,
+                80
+            ]
+        },
+        {
+            "rule_id": "IDS-002",
+            "severity": "MEDIUM",
+            "description": "Repeated failed connections",
+            "timestamp": "2026-10-15T10:02:40",
+            "source_ip": "192.0.2.60",
+            "destination_ip": "198.51.100.30",
+            "destination_port": 22,
+            "failed_connections": 5
+        },
+        {
+            "rule_id": "IDS-005",
+            "severity": "MEDIUM",
+            "description": "Repeated connections to one destination",
+            "timestamp": "2026-10-15T10:02:40",
+            "source_ip": "192.0.2.60",
+            "destination_ip": "198.51.100.30",
+            "destination_port": 22,
+            "connection_count": 5
+        },
+        {
+            "rule_id": "IDS-003",
+            "severity": "MEDIUM",
+            "description": "Unusually large network transfer",
+            "timestamp": "2026-10-15T10:03:00",
+            "source_ip": "192.0.2.70",
+            "destination_ip": "198.51.100.40",
+            "destination_port": 443,
+            "bytes_transferred": 9500000
+        },
+        {
+            "rule_id": "IDS-004",
+            "severity": "MEDIUM",
+            "description": "Connection to watchlisted port",
+            "timestamp": "2026-10-15T10:04:00",
+            "source_ip": "192.0.2.80",
+            "destination_ip": "198.51.100.50",
+            "destination_port": 4444
+        },
+        {
+            "rule_id": "IDS-005",
+            "severity": "MEDIUM",
+            "description": "Repeated connections to one destination",
+            "timestamp": "2026-10-15T10:05:40",
+            "source_ip": "192.0.2.90",
+            "destination_ip": "198.51.100.60",
+            "destination_port": 8080,
+            "connection_count": 5
+        }
+    ]
+}
