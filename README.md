@@ -1,256 +1,140 @@
-\# Network Intrusion Detection System (IDS)
+# Network Intrusion Detection System (IDS)
 
+**Python | Network Security | SOC Analysis | Threat Detection | Incident Investigation**
 
-
-\*\*Python | Network Security | SOC Analysis | Threat Detection | Incident Investigation\*\*
-
-
-
-\## Project Overview
-
-
+## Project Overview
 
 A lightweight, Python-based intrusion detection project that analyzes synthetic network traffic records, applies rule-based detection logic, generates JSON alerts, and groups related findings into investigation cases.
 
-
-
 The project demonstrates foundational network security monitoring and SOC investigation skills without requiring a full SIEM platform.
 
+## Key Features
 
+- CSV-based network traffic analysis
+- Five rule-based intrusion detection mechanisms
+- Five-minute sliding-window correlation
+- JSON alert generation
+- Alert grouping and incident investigation
+- Automated unit testing
+- Lightweight Windows-compatible implementation
 
-\## Features
-
-
-
-\- CSV-based network traffic analysis
-
-\- Five rule-based intrusion detection mechanisms
-
-\- Five-minute sliding-window correlation
-
-\- JSON alert generation
-
-\- Alert grouping and investigation reporting
-
-\- Automated detection testing
-
-\- Lightweight execution on Windows
-
-
-
-\## Detection Rules
-
-
+## Detection Rules
 
 | Rule ID | Detection | Severity |
-
 |---|---|---|
-
 | IDS-001 | Possible Port Scanning | Medium |
-
 | IDS-002 | Repeated Failed Connections | Medium |
-
-| IDS-003 | Unusually Large Transfer | Medium |
-
+| IDS-003 | Unusually Large Network Transfer | Medium |
 | IDS-004 | Watchlisted Destination Port | Medium |
+| IDS-005 | Repeated Network Connections | Medium |
 
-| IDS-005 | Repeated Connections | Medium |
+## Detection Results
 
-
-
-\## Dataset and Results
-
-
-
-The controlled synthetic dataset contains 19 valid network records.
-
-
+The synthetic dataset contains 19 valid network traffic records.
 
 | Metric | Result |
-
 |---|---:|
-
 | Records analyzed | 19 |
-
 | Invalid records | 0 |
-
-| Detection rules | 5 |
-
-| Raw alerts generated | 6 |
-
+| Detection rules implemented | 5 |
+| Alerts generated | 6 |
 | Investigation cases | 5 |
 
+Six alerts were generated across five detection rules. Two related alerts were grouped into one investigation case.
 
-
-The six alerts were grouped into five investigation cases. Two overlapping alerts describe related activity from the same source and destination.
-
-
-
-\## Project Architecture
-
-
-
-```text
+## Project Architecture
 
 Synthetic Network Traffic (CSV)
 
-&#x20;             |
+↓
 
-&#x20;             v
+Network Traffic Analyzer
 
-&#x20;     Traffic Analyzer
+↓
 
-&#x20;             |
+Rule-Based IDS Detection Engine
 
-&#x20;             v
+↓
 
-&#x20;    IDS Detection Engine
+JSON Alert Export
 
-&#x20;             |
+↓
 
-&#x20;             v
+Alert Correlation
 
-&#x20;      JSON Alert Export
+↓
 
-&#x20;             |
+Investigation Report
 
-&#x20;             v
+## Technologies Used
 
-&#x20;     Alert Correlation
+- Python 3
+- Python standard library: csv, json, datetime, collections, pathlib, unittest
+- Windows Command Prompt
+- CSV and JSON
+- Git and GitHub
 
-&#x20;             |
+## How to Run
 
-&#x20;             v
+**Requirements:** Python 3 and the included synthetic dataset.
 
-&#x20;     Investigation Report
+Run the following commands from the project root.
 
-```
+**1. Analyze network traffic**
 
+`py scripts/network_traffic_analyzer.py`
 
+**2. Run the IDS detection engine**
 
-\## Technologies Used
+`py scripts/intrusion_detection.py`
 
+**3. Generate investigation cases**
 
+`py scripts/incident_investigation.py`
 
-\- Python 3
+**4. Execute automated tests**
 
-\- Python standard library (`csv`, `json`, `datetime`, `collections`, `unittest`)
+`py -m unittest discover -s tests -p "test_*.py" -v`
 
-\- Windows Command Prompt
+## Investigation Findings
 
-\- CSV and JSON
+The controlled dataset contains five simulated detection scenarios:
 
-\- Git and GitHub
+1. Possible port scanning involving five destination ports.
+2. Repeated failed connections to port 22.
+3. A network transfer exceeding the configured five-million-byte threshold.
+4. A connection to watchlisted destination port 4444.
+5. Repeated connections to a single destination.
 
+The findings represent detection signals requiring analyst review. They do not establish malicious intent or confirm an actual intrusion.
 
+## Investigation Evidence
 
-\## How to Run
+- `datasets/synthetic_network_traffic.csv` — Synthetic network traffic records
+- `alerts/ids_alerts.json` — Generated detection alerts
+- `reports/IDS-Investigation-Report.json` — Correlated investigation cases
+- `reports/Final-IDS-Investigation-Report.md` — Final investigation report
+- `tests/test_intrusion_detection.py` — Automated detection tests
+- `screenshots/` — Supporting execution evidence
 
+## Limitations
 
+- Uses synthetic CSV traffic rather than live network capture
+- Does not inspect packet payloads
+- Uses fixed thresholds that may generate false positives
+- Performs basic alert correlation based on source and destination IPs
+- Does not automatically block suspicious connections
+- Is not a replacement for a production IDS or SIEM
 
-From the project root:
+## Future Improvements
 
+- Configurable detection thresholds
+- Improved alert deduplication
+- Additional automated edge-case testing
+- Support for additional network data sources
+- More advanced event correlation
+- Security monitoring dashboards
 
+## Disclaimer
 
-\*\*1. Analyze network traffic\*\*
-
-
-
-```bash
-
-py scripts/network\_traffic\_analyzer.py
-
-```
-
-
-
-\*\*2. Run the intrusion detection engine\*\*
-
-
-
-```bash
-
-py scripts/intrusion\_detection.py
-
-```
-
-
-
-\*\*3. Generate investigation cases\*\*
-
-
-
-```bash
-
-py scripts/incident\_investigation.py
-
-```
-
-
-
-\*\*4. Run automated tests\*\*
-
-
-
-```bash
-
-py -m unittest discover -s tests -p "test\_\*.py" -v
-
-```
-
-
-
-\## Investigation Findings
-
-
-
-The synthetic dataset includes five controlled detection scenarios: port enumeration, repeated failed connections, a large network transfer, a connection to a watchlisted port, and repeated connections to one destination.
-
-
-
-All detections are investigative signals rather than evidence of a confirmed attack.
-
-
-
-\## Limitations
-
-
-
-\- Operates on synthetic CSV network-flow records rather than live packets
-
-\- Does not perform packet inspection or payload analysis
-
-\- Uses fixed detection thresholds
-
-\- May produce false positives
-
-\- Groups alerts by source and destination IP rather than full incident context
-
-\- Is not a replacement for a production IDS or SIEM
-
-
-
-\## Future Improvements
-
-
-
-\- Additional automated edge-case testing
-
-\- Configurable detection thresholds
-
-\- Alert deduplication and suppression
-
-\- Additional network data sources
-
-\- Improved incident correlation
-
-\- Security dashboards and visualizations
-
-
-
-\## Disclaimer
-
-
-
-This project was developed for educational and authorized security monitoring. All included traffic records are synthetic. No real-world intrusion or compromise is claimed.
-
+This project was developed for educational and authorized cybersecurity training. All included traffic records are synthetic. No real-world intrusion or compromise is claimed.
