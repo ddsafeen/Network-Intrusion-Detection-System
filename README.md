@@ -41,6 +41,17 @@ The synthetic dataset contains 19 valid network traffic records.
 | Investigation cases | 5 |
 
 Six alerts were generated across five detection rules. Two related alerts were grouped into one investigation case.
+## Automated Testing
+
+The project includes automated unit tests for its five detection rules, covering expected detections, non-detections, and time-window boundaries.
+
+Run the tests using:
+
+`py -m unittest discover -s tests -p "test_*.py" -v`
+
+**Test evidence:**
+
+![Automated IDS Unit Tests](screenshots/05-unit-tests.png)
 
 ## Project Architecture
 
